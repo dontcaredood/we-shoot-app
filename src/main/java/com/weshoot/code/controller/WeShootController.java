@@ -2,6 +2,7 @@ package com.weshoot.code.controller;
 
 import com.weshoot.code.entity.Orders;
 import com.weshoot.code.model.Order;
+import com.weshoot.code.model.OrdersResponse;
 import com.weshoot.code.service.WeShootService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,9 +40,12 @@ public class WeShootController {
 //	}
 
 	@GetMapping("/orders")
-	public ResponseEntity<List<Orders>> getAllOrders(){
+	public ResponseEntity<OrdersResponse> getAllOrders(){
 		try{
-			return new ResponseEntity<>(weShootService.getAllOrders(), HttpStatus.OK);
+			List<Orders> ordersList = weShootService.getAllOrders();
+			long elements = ordersList.size();
+			OrdersResponse ordersResponse = new OrdersResponse(elements, ordersList);
+			return new ResponseEntity<>(ordersResponse, HttpStatus.OK);
 		}
 		catch (Exception e){
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
