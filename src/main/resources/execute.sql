@@ -1,0 +1,3 @@
+CREATE SEQUENCE order_sequence
+  START WITH 100
+  INCREMENT BY 1;

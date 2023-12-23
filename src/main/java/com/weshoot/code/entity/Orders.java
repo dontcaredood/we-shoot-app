@@ -1,24 +1,31 @@
-package com.bezkoder.spring.jpa.h2.model;
+package com.weshoot.code.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.Date;
 
-public class Order {
-
+@Entity
+@Table(name = "orders")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Orders {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_sequence")
+    @SequenceGenerator(name = "orders_sequence", sequenceName = "orders_sequence", allocationSize = 1)
     private long orderId;
-    @Column(name = "order_date")
-    private String title;
     @Column(name = "order_amount")
-    private Double description;
+    private Double orderAmount;
     @Column(name = "event_date")
     private Date eventDate;
+    @Column(name = "order_date")
+    private Date orderDate;
     @Column(name = "event_location")
     private String eventLocation;
     @Column(name = "customer_name")
@@ -30,9 +37,11 @@ public class Order {
     @Column(name = "amount_paid")
     private Double amount_paid;
     @Column(name = "remaining_balance")
-    private String remainingBalance;
+    private Double remainingBalance;
     @Column(name = "order_type")
     private String orderType;
-    @Column(name = "description")
-    private String orderDescription;
+	@Column(name = "description")
+	private String orderDescription;
+
+
 }

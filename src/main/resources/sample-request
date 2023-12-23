@@ -1,0 +1,11 @@
+{
+  "orderAmount": 10000,
+  "amountPaid": 3000,
+  "eventDate": "2024-01-05T06:43:15.557Z",
+  "eventLocation": "Madurai",
+  "customerName": "Sandy",
+  "customerPhone": 7845129,
+  "customerEmail": "sandy@gmail.com",
+  "orderType": "Photoshoot",
+  "orderDescription": "baby shoot"
+}
