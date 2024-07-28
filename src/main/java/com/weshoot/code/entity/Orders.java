@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -14,8 +16,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Orders {
-
+//add isClose and isDelivered
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_sequence")
     @SequenceGenerator(name = "orders_sequence", sequenceName = "orders_sequence", initialValue= 100, allocationSize = 1)
@@ -35,13 +39,18 @@ public class Orders {
     @Column(name = "customer_email")
     private String customerEmail;
     @Column(name = "amount_paid")
-    private Double amount_paid;
+    private Double amountPaid;
     @Column(name = "remaining_balance")
     private Double remainingBalance;
     @Column(name = "order_type")
     private String orderType;
 	@Column(name = "description")
 	private String orderDescription;
+    @Column(name = "isClosed")
+    private boolean isClosed;
+    @Column(name = "isDelivered")
+    private boolean isDelivered;
 
-
+//    @OneToMany(mappedBy="orders")
+//    private Set<OrderHistory> ordersHistory;
 }

@@ -1,0 +1,18 @@
+2024-07-28 00:22:11 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "truncate [*]orders"; expected "TABLE"; SQL statement:
+truncate orders [42001-214]
+2024-07-28 13:17:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table orders_audit (order_history_id bigint not null, order_id bigint, event_date timestamp(6), [*]user varchar(255), primary key (order_history_id))"; expected "identifier"; SQL statement:
+create table orders_audit (order_history_id bigint not null, order_id bigint, event_date timestamp(6), user varchar(255), primary key (order_history_id)) [42001-214]
+2024-07-28 13:18:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table orders_history (order_history_id bigint not null, order_id bigint, event_date timestamp(6), [*]user varchar(255), primary key (order_history_id))"; expected "identifier"; SQL statement:
+create table orders_history (order_history_id bigint not null, order_id bigint, event_date timestamp(6), user varchar(255), primary key (order_history_id)) [42001-214]
+2024-07-28 13:20:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table orders_history (order_history_id bigint not null, order_id bigint, event_date timestamp(6), [*]user varchar(255), primary key (order_history_id))"; expected "identifier"; SQL statement:
+create table orders_history (order_history_id bigint not null, order_id bigint, event_date timestamp(6), user varchar(255), primary key (order_history_id)) [42001-214]
+2024-07-28 13:21:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table orders_history (order_history_id bigint not null, order_id bigint, time_stamp timestamp(6), [*]user varchar(255), primary key (order_history_id))"; expected "identifier"; SQL statement:
+create table orders_history (order_history_id bigint not null, order_id bigint, time_stamp timestamp(6), user varchar(255), primary key (order_history_id)) [42001-214]
+2024-07-28 13:21:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table orders_history (order_history_id bigint not null, order_id bigint, time_stamp timestamp(6), [*]user varchar(255), primary key (order_history_id))"; expected "identifier"; SQL statement:
+create table orders_history (order_history_id bigint not null, order_id bigint, time_stamp timestamp(6), user varchar(255), primary key (order_history_id)) [42001-214]
