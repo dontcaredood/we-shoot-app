@@ -1,0 +1,8 @@
+package com.weshoot.code.repository;
+
+import com.weshoot.code.entity.OrderHistory;
+import com.weshoot.code.entity.Orders;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HistoryAuditRepository extends JpaRepository<OrderHistory, Long> {
+}
