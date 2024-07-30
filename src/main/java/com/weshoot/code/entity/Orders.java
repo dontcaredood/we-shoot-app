@@ -1,6 +1,7 @@
 package com.weshoot.code.entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Transactional
 public class Orders {
 //add isClose and isDelivered
     @Id
@@ -51,6 +51,21 @@ public class Orders {
     @Column(name = "isDelivered")
     private boolean isDelivered;
 
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderAmount=" + orderAmount +
+                ", eventDate=" + eventDate +
+                ", eventLocation='" + eventLocation + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", customerPhone=" + customerPhone +
+                ", customerEmail='" + customerEmail + '\'' +
+                ", amountPaid=" + amountPaid +
+                ", remainingBalance=" + remainingBalance +
+                ", orderType='" + orderType + '\'' +
+                ", orderDescription='" + orderDescription + '\'' +
+                '}';
+    }
 //    @OneToMany(mappedBy="orders")
 //    private Set<OrderHistory> ordersHistory;
 }
