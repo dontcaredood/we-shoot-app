@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-@CrossOrigin(origins = "*")
+
+import static com.weshoot.code.util.GlobalConstants.LOCAL_URL;
+import static com.weshoot.code.util.GlobalConstants.WEB_URL;
+
+@CrossOrigin(origins = {LOCAL_URL, WEB_URL})
 @RestController
 @RequestMapping("/we-shoot/reports")
 public class ReportsController {
     @Autowired
     OrderService orderService;
-
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL})
     @GetMapping("/cost_reports")
     public ResponseEntity<CostReports> costReports(){
         try{

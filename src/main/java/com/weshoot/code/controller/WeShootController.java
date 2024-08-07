@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
+import static com.weshoot.code.util.GlobalConstants.LOCAL_URL;
+import static com.weshoot.code.util.GlobalConstants.WEB_URL;
+
+@CrossOrigin(origins = {LOCAL_URL, WEB_URL})
 @RestController
 @RequestMapping("/we-shoot")
 public class WeShootController {
@@ -24,10 +27,14 @@ public class WeShootController {
 
 	@Autowired
 	AuditHistoryService auditHistoryService;
+	@CrossOrigin(origins = {LOCAL_URL, WEB_URL}, methods = {RequestMethod.POST})
+	@PostMapping("/check")
+	public ResponseEntity<String> checkPath(){
+		return new ResponseEntity<>("HELLO",HttpStatus.OK);
+	}
 
 
-
-
+	@CrossOrigin(origins = {LOCAL_URL, WEB_URL}, methods = {RequestMethod.POST})
 	@PutMapping("/update-delivery-status/{id}")
 	public ResponseEntity<Orders> updateOrderDetails(@PathVariable long id, @RequestBody boolean status){
 		Optional<Orders> orders = orderService.getOrderById(id);

@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-@CrossOrigin(origins = "*")
+
+import static com.weshoot.code.util.GlobalConstants.LOCAL_URL;
+import static com.weshoot.code.util.GlobalConstants.WEB_URL;
+
+@CrossOrigin(origins = {LOCAL_URL, WEB_URL})
 @RestController
 @RequestMapping("/we-shoot/notify")
 public class SmsController {
     @Autowired
     AuditHistoryService auditHistoryService;
-
+    
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL})
     @GetMapping(value = "/sendSMS/{number}")
     public void sendSMS(@RequestBody SMSRequest smsRequest) {
         final String FROM_NUMBER = "+14845529230";

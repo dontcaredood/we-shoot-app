@@ -1,9 +1,7 @@
 package com.weshoot.code.controller;
 
-import com.weshoot.code.entity.OrderHistory;
 import com.weshoot.code.entity.Orders;
 import com.weshoot.code.model.*;
-import com.weshoot.code.service.AuditHistoryService;
 import com.weshoot.code.service.OrderService;
 import com.weshoot.code.util.ApplicationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
+import static com.weshoot.code.util.GlobalConstants.LOCAL_URL;
+import static com.weshoot.code.util.GlobalConstants.WEB_URL;
+
 @RestController
 @RequestMapping("/we-shoot/order")
 public class OrdersController {
@@ -25,7 +25,7 @@ public class OrdersController {
     @Autowired
     SmsController smsController;
 
-
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL}, methods = {RequestMethod.POST,RequestMethod.OPTIONS})
     @PostMapping("/addOrder")
     public ResponseEntity<Long> addOrder(@RequestBody Order order) {
         try {
@@ -40,6 +40,7 @@ public class OrdersController {
         }
     }
 
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL})
     @GetMapping("/getOrders")
     public ResponseEntity<OrdersResponse> getAllOrders() {
         try {
@@ -52,6 +53,7 @@ public class OrdersController {
         }
     }
 
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL})
     @GetMapping("/getOrder/{id}")
     public ResponseEntity<Orders> getOrderById(@PathVariable Long id) {
         try {
@@ -66,6 +68,7 @@ public class OrdersController {
         }
     }
 
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL}, methods = {RequestMethod.POST,RequestMethod.OPTIONS})
     @PutMapping("/updateOrder")
     public ResponseEntity<Orders> updateOrder(@RequestBody Order updatedOrder) {
         try {
@@ -75,6 +78,8 @@ public class OrdersController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL})
     @GetMapping("/trackOrder/{id}")
     public ResponseEntity<TrackOrderResponse> getTrackOrder(@PathVariable long id) {
         try {
@@ -85,10 +90,10 @@ public class OrdersController {
         }
     }
 
+    @CrossOrigin(origins = {LOCAL_URL, WEB_URL}, methods = {RequestMethod.POST,RequestMethod.OPTIONS})
     @PostMapping("/trackOrder")
     public ResponseEntity<TrackOrderResponse> insertTrackOrder(@RequestBody TrackOrderRequest trackOrderRequest) {
         try {
-
             TrackOrderResponse trackOrderDetails = orderService.insertTrackOrderDetails(trackOrderRequest);
             return new ResponseEntity<>(trackOrderDetails, HttpStatus.OK);
         } catch (Exception e) {
